@@ -11,8 +11,8 @@ class ScreenAutomation:
     def __init__(self):
         self.reader = easyocr.Reader(['ch_sim'])
         self.text_to_find = ["进入避难所", "我知道了", "购物", "760,"]  # 要查找的文本列表
-        self.save_path = "D:\\CODE\\AUTOMATED_YHTJ_QA\\out_files\\screenshots"
-        self.marked_path = "D:\\CODE\\AUTOMATED_YHTJ_QA\\out_files\\marked_screens"
+        self.save_path = "D:\\CODE\\YHTJ\\out_files\\screenshots"
+        self.marked_path = "D:\\CODE\\YHTJ\\out_files\\marked_screens"
 
         self._create_directory(self.save_path)
         self._create_directory(self.marked_path)

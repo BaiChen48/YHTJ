@@ -1,15 +1,13 @@
 import schedule
 import time
-from units33 import ScreenAutomation
+from units import ScreenAutomation
 import os
 import shutil
 from logger_handler import logger
 
-
-
 # 定义一个函数来封装主逻辑，以便我们可以捕获异常并重新运行
 def run_main():
-    attempts = 0
+    attempts = 1
     max_attempts = 2  # 最多重试两次
     while attempts <= max_attempts:
         try:
@@ -76,23 +74,24 @@ def stop_app():
 # 删除截图
 def clean_screenshots():
     print("clean_screenshots")
-# def clean_screenshots(folder_path="D:\\CODE\\AUTOMATED_YHTJ_QA\\out_files\\screenshots"):
-#     if os.path.exists(folder_path) and os.path.isdir(folder_path):
-#         for filename in os.listdir(folder_path):
-#             file_path = os.path.join(folder_path, filename)
-#             try:
-#                 if os.path.isdir(file_path):
-#                     shutil.rmtree(file_path)
-#                 else:
-#                     os.remove(file_path)
-#             except Exception as e:
-#                 logger.error(f'无法删除 {file_path}。原因: {e}')
-#     else:
-#         logger.error(f'提供的路径 {folder_path} 不存在或不是一个文件夹。')
+    # def clean_screenshots(folder_path="D:\\CODE\\AUTOMATED_YHTJ_QA\\out_files\\screenshots"):
+    #     if os.path.exists(folder_path) and os.path.isdir(folder_path):
+    #         for filename in os.listdir(folder_path):
+    #             file_path = os.path.join(folder_path, filename)
+    #             try:
+    #                 if os.path.isdir(file_path):
+    #                     shutil.rmtree(file_path)
+    #                 else:
+    #                     os.remove(file_path)
+    #             except Exception as e:
+    #                 logger.error(f'无法删除 {file_path}。原因: {e}')
+    #     else:
+    #         logger.error(f'提供的路径 {folder_path} 不存在或不是一个文件夹。')
 
 # 主函数，用于调度任务
 def main():
     run_main()
+    run_main_huawei()
 
 # 华为app的主函数
 def main_huawei():
@@ -100,15 +99,9 @@ def main_huawei():
 
 # 安排任务
 for hour in range(19):
-    schedule.every().day.at(f"{hour}:58").do(main)
-    schedule.every().day.at(f"{hour}:13").do(main_huawei)
+    schedule.every().day.at(f"{hour:02d}:13").do(main)
+    # schedule.every().day.at(f"{hour:02d}:13").do(main_huawei)
 
 while True:
     schedule.run_pending()
     time.sleep(1)
-
-
-# if __name__ == '__main__':
-#     main()
-#     # main_huawei()
-
