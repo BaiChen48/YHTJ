@@ -1,6 +1,6 @@
 import schedule
 import time
-from units import ScreenAutomation
+from units7 import ScreenAutomation
 import os
 import shutil
 from logger_handler import logger
@@ -55,52 +55,50 @@ def run_main_huawei():
 def start_app_huawei():
     cmd = 'adb shell am start -n com.netease.yhtj.huawei/com.netease.game.MessiahNativeActivity'
     ScreenAutomation()._run_cmd(cmd)
+    time.sleep(3)
 
 # 关闭华为app
 def stop_app_huawei():
     cmd = 'adb shell am force-stop com.netease.yhtj.huawei'
     ScreenAutomation()._run_cmd(cmd)
+    time.sleep(3)
 
 # 启动app
 def start_app():
     cmd = 'adb shell am start -n com.netease.yhtj/com.netease.game.MessiahNativeActivity'
     ScreenAutomation()._run_cmd(cmd)
+    time.sleep(3)
 
 # 关闭app
 def stop_app():
     cmd = 'adb shell am force-stop com.netease.yhtj'
     ScreenAutomation()._run_cmd(cmd)
+    time.sleep(3)
 
 # 删除截图
-def clean_screenshots():
-    print("clean_screenshots")
-    # def clean_screenshots(folder_path="D:\\CODE\\AUTOMATED_YHTJ_QA\\out_files\\screenshots"):
-    #     if os.path.exists(folder_path) and os.path.isdir(folder_path):
-    #         for filename in os.listdir(folder_path):
-    #             file_path = os.path.join(folder_path, filename)
-    #             try:
-    #                 if os.path.isdir(file_path):
-    #                     shutil.rmtree(file_path)
-    #                 else:
-    #                     os.remove(file_path)
-    #             except Exception as e:
-    #                 logger.error(f'无法删除 {file_path}。原因: {e}')
-    #     else:
-    #         logger.error(f'提供的路径 {folder_path} 不存在或不是一个文件夹。')
+def clean_screenshots(folder_path="D:\\CODE\\YHTJ\\out_files\\screenshots"):
+    if os.path.exists(folder_path) and os.path.isdir(folder_path):
+        for filename in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, filename)
+            try:
+                if os.path.isdir(file_path):
+                    shutil.rmtree(file_path)
+                else:
+                    os.remove(file_path)
+            except Exception as e:
+                logger.error(f'无法删除 {file_path}。原因: {e}')
+    else:
+        logger.error(f'提供的路径 {folder_path} 不存在或不是一个文件夹。')
 
 # 主函数，用于调度任务
 def main():
     run_main()
-    run_main_huawei()
-
-# 华为app的主函数
-def main_huawei():
+    time.sleep(5)
     run_main_huawei()
 
 # 安排任务
-for hour in range(19):
-    schedule.every().day.at(f"{hour:02d}:13").do(main)
-    # schedule.every().day.at(f"{hour:02d}:13").do(main_huawei)
+for hour in range(20):  # 0到20点
+    schedule.every().day.at(f"{hour:02d}:58").do(main)
 
 while True:
     schedule.run_pending()
