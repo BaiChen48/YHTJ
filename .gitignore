@@ -242,4 +242,12 @@ cython_debug/
 #.idea/
 
 # 自定义
-out_files/
+/out_files/
+/app/com.netease.yhtj.huawei.apk
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml
+/.idea/YHTJ.iml
+/app/yhtj_netease_v1.0.236_20241121.apk

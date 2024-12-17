@@ -135,14 +135,14 @@ class ScreenAutomation:
             found_special, result_image = self._handle_special_clicks(text, result_image)
             if found_special:
                 timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
-                self._save_marked_image(result_image, f"special_click_{timestamp}.png")
+                self._save_marked_image(result_image, f"{timestamp} special_click.png")
                 return True, result_image, text
 
             # 检查是否是特殊结束条件
             if "已达到购买上限" in text or "商品库存不足" in text:
                 logger.info(f"找到结束条件：{text}")
                 timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
-                self._save_marked_image(result_image, f"end_condition_{timestamp}.png")
+                self._save_marked_image(result_image, f"{timestamp} end_condition.png")
                 return True, result_image, text  # 这个返回将会导致外部循环结束
 
             # 检查普通文本
@@ -150,7 +150,7 @@ class ScreenAutomation:
                 result_image = self._process_found_text(result_image, bbox, text, x_center, y_center)
                 result_image = self._click_position(x_center, y_center, result_image)
                 timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
-                self._save_marked_image(result_image, f"found_{text}{timestamp}.png")
+                self._save_marked_image(result_image, f"{timestamp} found_{text}.png")
                 return True, result_image, text
 
         return False, result_image, ""
@@ -167,10 +167,10 @@ class ScreenAutomation:
                 break
             elif found:
                 logger.info(f"第{loop_count+1}次运行中匹配到普通文本：'{matched_text}'，等待5秒后开始下一次循环")
-                time.sleep(3)
+                time.sleep(1)
             else:
                 logger.info(f"第{loop_count+1}次运行未匹配到文本，继续匹配")
-                time.sleep(3)
+                time.sleep(1)
             loop_count += 1  # 增加循环计数器
 
 if __name__ == '__main__':
