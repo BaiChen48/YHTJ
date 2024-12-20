@@ -97,7 +97,7 @@ def main():
     # run_main_huawei()
 
 # 安排任务
-for hour in range(19):  # 0到18点
+for hour in range(19):  # 0到10点
     schedule.every().day.at(f"{hour:02d}:58").do(main)
 
 while True:

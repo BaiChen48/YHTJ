@@ -146,7 +146,7 @@ class ScreenAutomation:
                 return True, result_image, text
 
             # 检查是否是特殊结束条件
-            if "已达到购买上限" in text or "商品库存不足" in text or "库存: 0" in text:
+            if "已达到购买上限" in text or "商品库存不足" in text or "库存: 0" in text or "账号在别处登录" in text:
                 logger.info(f"找到结束条件：{text}")
                 timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
                 self._save_marked_image(result_image, f"{timestamp} end_condition.png")
