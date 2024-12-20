@@ -19,9 +19,10 @@ class ScreenAutomation:
             "推荐商城": (1815, 63),
             "尊享会员": (1815, 63),
             "获奖记录": (1815, 63),
-            "生存手册": (1815, 63),
             "自动整理": (1815, 63),
             "一键领取": (1815, 63),
+            "尊敬的萤火虫特遣队员们": (1576, 204),
+
         }
         self.save_path = "D:\\CODE\\YHTJ\\out_files\\screenshots"
         self.marked_path = "D:\\CODE\\YHTJ\\out_files\\marked_screens"
@@ -145,7 +146,7 @@ class ScreenAutomation:
                 return True, result_image, text
 
             # 检查是否是特殊结束条件
-            if "已达到购买上限" in text or "商品库存不足" in text:
+            if "已达到购买上限" in text or "商品库存不足" in text or "库存: 0" in text:
                 logger.info(f"找到结束条件：{text}")
                 timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
                 self._save_marked_image(result_image, f"{timestamp} end_condition.png")

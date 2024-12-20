@@ -13,7 +13,7 @@ def run_main():
         try:
             start_app()
             logger.info(f'{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}启动app')
-            time.sleep(10)
+            time.sleep(30)
             ScreenAutomation().run_main()
             logger.info(f'{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}app主代码执行完毕')
             stop_app()
@@ -36,7 +36,7 @@ def run_main_huawei():
         try:
             start_app_huawei()
             logger.info(f'{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}启动华为app')
-            time.sleep(30)
+            time.sleep(15)
             ScreenAutomation().run_main()
             logger.info(f'{time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}华为app主代码执行完毕')
             stop_app_huawei()
@@ -94,12 +94,13 @@ def clean_screenshots(folder_path="D:\\CODE\\YHTJ\\out_files\\screenshots"):
 def main():
     run_main()
     time.sleep(5)
-    run_main_huawei()
+    # run_main_huawei()
 
 # 安排任务
-for hour in range(24):  # 0到20点
-    schedule.every().day.at(f"{hour:02d}:57").do(main)
+for hour in range(19):  # 0到18点
+    schedule.every().day.at(f"{hour:02d}:58").do(main)
 
 while True:
     schedule.run_pending()
+    
     time.sleep(1)
