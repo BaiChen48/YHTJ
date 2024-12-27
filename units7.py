@@ -169,7 +169,8 @@ class ScreenAutomation:
 
         while loop_count < max_loops:
             found, result_image, matched_text = self.find_and_click_text()
-            if found and ("已达到购买上限" in matched_text or "商品库存不足" in matched_text):
+            if found and ("已达到购买上限" in matched_text or "商品库存不足" in matched_text or "库存: 0" in matched_text
+                          or "账号在别处登录" in matched_text):
                 logger.info("已达到购买上限或商品库存不足，退出整体循环")
                 break
             elif found:

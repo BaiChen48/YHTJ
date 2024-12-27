@@ -76,7 +76,7 @@ def stop_app():
     time.sleep(3)
 
 # 删除截图
-def clean_screenshots(folder_path="D:\\CODE\\YHTJ\\out_files\\screenshots"):
+def clean_screenshot(folder_path="D:\\CODE\\YHTJ\\out_files\\screenshots"):
     if os.path.exists(folder_path) and os.path.isdir(folder_path):
         for filename in os.listdir(folder_path):
             file_path = os.path.join(folder_path, filename)
@@ -90,14 +90,18 @@ def clean_screenshots(folder_path="D:\\CODE\\YHTJ\\out_files\\screenshots"):
     else:
         logger.error(f'提供的路径 {folder_path} 不存在或不是一个文件夹。')
 
+def clean_screenshots():
+    clean_screenshot(folder_path="D:\\CODE\\YHTJ\\out_files\\screenshots")
+    time.sleep(1)
+    clean_screenshot(folder_path="D:\\CODE\\YHTJ\\out_files\\marked_screens")
 # 主函数，用于调度任务
 def main():
     run_main()
     time.sleep(5)
-    # run_main_huawei()
+    run_main_huawei()
 
 # 安排任务
-for hour in range(19):  # 0到10点
+for hour in range(18):  # 0到20点
     schedule.every().day.at(f"{hour:02d}:58").do(main)
 
 while True:
